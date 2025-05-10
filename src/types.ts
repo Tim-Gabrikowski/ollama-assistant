@@ -22,7 +22,7 @@ export interface ToolCall {
 	};
 }
 export interface Message {
-	role: "user" | "assistant" | "tool" | "system" | "function";
+	role: "user" | "assistant" | "tool" | "system" | "function" | "control";
 	content: string;
 	name?: string;
 	tool_calls?: ToolCall[];

@@ -8,6 +8,7 @@ export interface AssistantOptions {
 	model: string;
 	tools?: Tool[];
 	debug?: boolean;
+	initialMessages?: Message[];
 }
 
 export class Assistant {
@@ -20,6 +21,7 @@ export class Assistant {
 		this.model = options.model;
 		this.debug = options.debug ?? false;
 		options.tools?.forEach((t) => this.toolbox.register(t));
+		options.initialMessages?.forEach((m) => this.context.add(m));
 	}
 
 	getContext(): Context {
