@@ -1,6 +1,6 @@
 # Ollama-Assistant
 
-This is a simple wrapper around the ollama-js library to provide building blogs for building an AI-Assistant. It provides an interface for defining Tools and an automatic tool caller for the AI, to automate the process of executing tool and sending the response back to ollama.
+This is a simple wrapper around the ollama-js library to provide building blocks for building an AI-Assistant. It provides an interface for defining Tools and an automatic tool caller for the AI, to automate the process of executing tool and sending the response back to ollama. As well as context management.
 
 ## Quick start
 
@@ -28,17 +28,18 @@ let assistant = new Assistant({
 
 Tools can be defined as classes that implement the `Tool` interface.
 
-(`tools.ts`)
+(Example `tools.ts` file as it could be imported above)
 ```ts
 import { Tool, ToolInput } from "ollama-assistant";
 
 export class GetDateTimeTool implements Tool {
 	name = "get_time";
+	// good description is necessary to tell the AI what the tool is for
 	description =
 		"Get the current (actual) time and date in a specific timezone.";
 	parameters = {
 		type: "object",
-		properties: {
+		properties: { // define your parameters here
 			timezone: {
 				type: "string",
 				description:
