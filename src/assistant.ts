@@ -91,7 +91,10 @@ export class Assistant {
 					const toolMsg: Message = {
 						role: "tool",
 						name: call.function.name,
-						content: JSON.stringify(output),
+						content:
+							typeof output == "string"
+								? output
+								: JSON.stringify(output),
 					};
 					this.addMessage(toolMsg);
 					steps.push(toolMsg);
