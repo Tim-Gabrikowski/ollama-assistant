@@ -85,8 +85,12 @@ export class Assistant {
 						throw new Error(`Tool ${call.function.name} not found`);
 
 					console.log(`Executing tool: ${tool.name}`);
-
-					const output = await tool.execute(call.function.arguments);
+					let output;
+					try {
+						output = await tool.execute(call.function.arguments);
+					} catch (error) {
+						output = `Error executing tool: ${error}`;
+					}
 
 					const toolMsg: Message = {
 						role: "tool",
